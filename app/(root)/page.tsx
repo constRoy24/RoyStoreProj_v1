@@ -1,15 +1,18 @@
-
 // export const metadata = {
 //   title: 'Home'
 // }
 import ProductList from "@/components/ui/shared/product/product-list";
-import sampleData from "@/db/sample-data";
 
-const Home = () => {
-  console.log(sampleData)
-  return ( <>
-    <ProductList data={sampleData.products} title="Newest Arrivals" limit={4}/>
-  </> );
-}
- 
+import { getLatestProduct } from "@/lib/actions/product.actions";
+
+const Home = async () => {
+  const latestProduct = await getLatestProduct();
+
+  return (
+    <>
+      <ProductList data={latestProduct} title="Newest Arrivals" />
+    </>
+  );
+};
+
 export default Home;
